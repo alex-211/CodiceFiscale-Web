@@ -10,11 +10,11 @@
                 // refer to wiki docs https://it.wikipedia.org/wiki/Codice_fiscale#Generazione_del_codice_fiscale
                 let codice = [];
 
-                let surname = document.datiAnagrafici.cognome.value;
-                let name = document.datiAnagrafici.nome.value;
-                /*let meseNascita = document.datiAnAgrafici.meseNascita.value;
-                let annoNascita = document.datiAnAgrafici.annoNascita.value;
-                let ggNascita = document.datiAnAgrafici.ggNascita.value;
+                let surname = document.datiAnagrafici.cogname.value;
+                let name = document.datiAnagrafici.name.value;
+				let meseNascita = document.datiAnagrafici.elencoMesi.meseNascita.value;
+                let annoNascita = document.datiAnagrafici.elencoAnno.annoNascita.value;
+                /*let ggNascita = document.datiAnAgrafici.ggNascita.value;
                 let sesso = document.datiAnagrafici.sesso;
                 let comuneNascita = document.datiAnagrafici.comuneNascita.value;
                 let controllo; COMMENTED OUT FOR TESTIG*/ 
@@ -28,11 +28,11 @@
                 // qua le verifiche della correttezza dei dati inviati
 
                 if (surname == "") { // works
-                    alert("Campo 'cognome' vuoto");
+                    alert("Campo 'cogname' vuoto");
                     return;
                 } 
                 if (name == "") { // might have fixed it, check if it works
-                    alert("Campo 'nome' vuoto");
+                    alert("Campo 'name' vuoto");
                     return;
                 } 
                 /*if (sesso == "") {
@@ -41,15 +41,15 @@
                 } 
                 // il resto dei campi hanno un'opzioni di default essendo elenchi COMMENTED OUT FOR TESTING*/
 
-                // pos. 0-2 cognome
-                let cognomeSize = surname.length;
+                // pos. 0-2 cogname
+                let cognameSize = surname.length;
                 let y = 0;
 
-                for (let i = 0; i < cognomeSize && y < 3; i++)
+                for (let i = 0; i < cognameSize && y < 3; i++)
                 {
                     //console.log(surname[i] + " " + " " + codice + " " + y); // Perché non c'è un debugger per JS su VS Code???
 
-                    if (y == 2 && i == cognomeSize - 1)
+                    if (y == 2 && i == cognameSize - 1)
                     {
                         codice[2] = "X";
                     }
@@ -61,54 +61,55 @@
                     }
                 }
                 
-                // pos 3-5 nome
-				let consonantiNome = [];
+                // pos 3-5 name
+				let consonantiName = [];
 				let z = 0;
-				for (let i = 0; i < nome.length; i++)
+				for (let i = 0; i < name.length; i++)
 				{
-					//console.log(consonantiNome[z] + " " + nome[i]);
+					//console.log(consonantiName[z] + " " + name[i]);
 
-					if (nome[i] != "A" && nome[i] != "E" && nome[i] != "I" && nome[i] != "O" && nome[i] != "U")
+					if (name[i] != "A" && name[i] != "E" && name[i] != "I" && name[i] != "O" && name[i] != "U")
 					{
-						consonantiNome[z] = nome[i];
+						consonantiName[z] = name[i];
 						z++;
 					}
 				}
 
-				if (consonantiNome.length == 3)
+				if (consonantiName.length == 3)
 				{
 					for (let i = 0; i < 4; i++)
 					{
-						codice[y] = consonantiNome[i];
+						codice[y] = consonantiName[i];
 						y++;
 					}
 				}
 
-				if (consonantiNome.length > 3)
+				if (consonantiName.length > 3)
 				{
-					codice[3] = consonantiNome[0];
-					codice[4] = consonantiNome[2];
-					codice[5] = consonantiNome[3];
+					codice[3] = consonantiName[0];
+					codice[4] = consonantiName[2];
+					codice[5] = consonantiName[3];
 					y += 3;
 				}
 
-				if (consonantiNome.length < 3)
+				if (consonantiName.length < 3)
 				{
-					codice[3] = consonantiNome[0];
-					codice[4] = consonantiNome[1];
+					codice[3] = consonantiName[0];
+					codice[4] = consonantiName[1];
 
 					for (let i = 0; i < name.length; i++)
 					{
-						if (nome[i] == "A" || nome[i] == "E" || nome[i] == "I" || nome[i] == "O" || nome[i] == "U")
+						if (name[i] == "A" || name[i] == "E" || name[i] == "I" || name[i] == "O" || name[i] == "U")
 						{
-							codice[5] = nome[i];
+							codice[5] = name[i];
 							break;
 						}
 					}
 					y +=3;
 				}
 
-
+				// pos. 6-8 anno e mese di nascita
+				
                 // controllo
                 alert(codice);
 
@@ -121,9 +122,9 @@
     <body>
         <h1>Calcola qui il tuo codice fiscale!</h1>
         <form action="" name="datiAnagrafici" onsubmit="calcola()">
-            <label for="nome">Nome: </label> <input type="text" name="nome" id="nome">
+            <label for="name">Name: </label> <input type="text" name="name" id="name">
             <br>
-            <label for="cognome">Cognome: </label> <input type="text" name="cognome" id="cognome">
+            <label for="cogname">Cognome: </label> <input type="text" name="cogname" id="cogname">
             <br>
             <label for="sesso">Sesso maschile: </label>  <input type="radio" name="sesso" id="sessoMASCHIO">
             <label for="sesso">Sesso femminile: </label> <input type="radio" name="sesso" id="sessoFEMMINA">
