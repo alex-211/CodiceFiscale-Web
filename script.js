@@ -3,13 +3,30 @@ function calcola() {
     let codice = [];
 
     let surname = document.datiAnagrafici.cognome.value;
-    let name = document.datiAnagrafici.nome.value;
-    /*let meseNascita = document.datiAnAgrafici.meseNascita.value;
-    let annoNascita = document.datiAnAgrafici.annoNascita.value;
-    let ggNascita = document.datiAnAgrafici.ggNascita.value;
-    let sesso = document.datiAnagrafici.sesso;
-    let comuneNascita = document.datiAnagrafici.comuneNascita.value;
-    let controllo; COMMENTED OUT FOR TESTIG*/ 
+    let name = document.datiAnagrafici.name.value;
+
+    let elementoSelezionatoMese = document.getElementById("elencoMesi");
+    let meseNascita = elementoSelezionatoMese.options[elementoSelezionatoMese.selectedIndex].value;
+    let elementoSelezionatoAnno = document.getElementById("elencoAnno");
+    let annoNascita = elementoSelezionatoAnno.options[elementoSelezionatoAnno.selectedIndex].value;
+    let elementoSelezionatoGiorno = document.getElementById("elencoGiorni");
+    let giornoNascita = elementoSelezionatoGiorno.options[elementoSelezionatoGiorno.selectedIndex].value;
+
+    let elementoSelezionatoStato = document.getElementById("elencoStati");
+    let statoNascita = elementoSelezionatoStato.options[elementoSelezionatoStato.selectedIndex].value;
+    let elementoSelezionatoComune = document.getElementById("elencoComuni");
+    let comuneNascita = elementoSelezionatoComune.options[elementoSelezionatoComune.selectedIndex].value;
+
+    let sessoMaschio = false;
+    let sessoFemmina = false;
+    if (document.getElementById("sessoMASCHIO").checked)
+    {
+        sessoMaschio = true;
+    }
+    if (document.getElementById("sessoFEMMINA").checked)
+    {
+        sessoFemmina = true;
+    }
 
     // formattazione delle variabili stringhe
     name = name.toUpperCase();
@@ -24,13 +41,14 @@ function calcola() {
         return;
     } 
     if (name == "") { // might have fixed it, check if it works
-        alert("Campo 'nome' vuoto");
+        alert("Campo 'name' vuoto");
         return;
     } 
-    /*if (sesso == "") {
-        alert("Campo 'sesso' vuoto");
+    if (sessoMaschio == false && sessoFemmina == false)
+    {
+        alert("Selezionare un sesso");
         return;
-    } 
+    }
     // il resto dei campi hanno un'opzioni di default essendo elenchi COMMENTED OUT FOR TESTING*/
 
     // pos. 0-2 cognome
@@ -53,54 +71,97 @@ function calcola() {
         }
     }
     
-    // pos 3-5 nome
-    let consonantiNome = [];
+    // pos 3-5 name
+    let consonantiName = [];
     let z = 0;
-    for (let i = 0; i < nome.length; i++)
+    for (let i = 0; i < name.length; i++)
     {
-        //console.log(consonantiNome[z] + " " + nome[i]);
+        //console.log(consonantiName[z] + " " + name[i]);
 
-        if (nome[i] != "A" && nome[i] != "E" && nome[i] != "I" && nome[i] != "O" && nome[i] != "U")
+        if (name[i] != "A" && name[i] != "E" && name[i] != "I" && name[i] != "O" && name[i] != "U")
         {
-            consonantiNome[z] = nome[i];
+            consonantiName[z] = name[i];
             z++;
         }
     }
 
-    if (consonantiNome.length == 3)
+    if (consonantiName.length == 3)
     {
         for (let i = 0; i < 4; i++)
         {
-            codice[y] = consonantiNome[i];
+            codice[y] = consonantiName[i];
             y++;
         }
     }
 
-    if (consonantiNome.length > 3)
+    if (consonantiName.length > 3)
     {
-        codice[3] = consonantiNome[0];
-        codice[4] = consonantiNome[2];
-        codice[5] = consonantiNome[3];
+        codice[3] = consonantiName[0];
+        codice[4] = consonantiName[2];
+        codice[5] = consonantiName[3];
         y += 3;
     }
 
-    if (consonantiNome.length < 3)
+    if (consonantiName.length < 3)
     {
-        codice[3] = consonantiNome[0];
-        codice[4] = consonantiNome[1];
+        codice[3] = consonantiName[0];
+        codice[4] = consonantiName[1];
 
         for (let i = 0; i < name.length; i++)
         {
-            if (nome[i] == "A" || nome[i] == "E" || nome[i] == "I" || nome[i] == "O" || nome[i] == "U")
+            if (name[i] == "A" || name[i] == "E" || name[i] == "I" || name[i] == "O" || name[i] == "U")
             {
-                codice[5] = nome[i];
+                codice[5] = name[i];
                 break;
             }
         }
         y +=3;
     }
 
+    // pos. 6-8 anno e mese di nascita
+    codice[6] = annoNascita[2];
+    codice[7] = annoNascita[3];
+    codice[8] = meseNascita;
+    y += 3;
 
-    // controllo
+    // pos. 9-10 giorno di nascita e sesso
+    sezioneSesso = giornoNascita;
+    if (sessoFemmina == true)
+    {
+        sezioneSesso += 40;
+    }
+    if (sezioneSesso.length == 1)
+    {
+        codice[9] = "0";
+        codice[10] = sezioneSesso;
+    }
+    else
+    {
+        codice[9] = sezioneSesso[0];
+        codice[10] = sezioneSesso[1];
+    }
+    y += 2;
+    
+    // pos. 11-14 luogo di nascita
+    if (statoNascita == "Z000")
+    {
+        codice[11] = comuneNascita[0];
+        codice[12] = comuneNascita[1];
+        codice[13] = comuneNascita[2];
+        codice[14] = comuneNascita[3];
+    }
+    else
+    {
+        codice[11] = statoNascita[0];
+        codice[12] = statoNascita[1];
+        codice[13] = statoNascita[2];
+        codice[14] = statoNascita[3];
+    }
+    y += 4;
+
+    // pos. 15-16 carattere di controllo
     alert(codice);
+
+
+
 }
