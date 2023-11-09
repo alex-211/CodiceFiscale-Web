@@ -24,6 +24,7 @@ Il codice fiscale è diviso in 15 posizioni occupate da 6 sezioni:
     | R | Ottobre |
     | S | Novembre |
     | T | Dicembre |
+    
 4. Pos. 10 -> 11, giorno di nascita e sesso: Nel caso di un uomo di prendono le cifre del giorno di nascita, mentre per una donna si aggiunge al giorno il numero 40.
 5. Pos. 12 -> 15, luogo di nascita: per una persona nata in italia si prende il codice catastale del comune, nel caso di una persona nata all'estero si prende il codice catastale dello stato estero di nascita. [Per saperne di più sul codice catastale](https://it.wikipedia.org/wiki/Codice_catastale)
 6. Pos. 16, carattere di controllo: si calcola con un algoritmo che si può trovare [qui](https://it.wikipedia.org/wiki/Codice_fiscale#Generazione_del_codice_fiscale)

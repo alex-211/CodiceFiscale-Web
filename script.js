@@ -191,3 +191,12 @@ function calcola() {
     // FINE
     alert(codice);
 }
+
+function aggiornaElenchi()
+{
+    if (document.datiAnagrafici.elencoStati.value == "Z000")
+    {
+        let elencoComune = document.datiAnagrafici.elencoComune;
+        elencoComune.removeAttribute("disabled")
+    }
+}

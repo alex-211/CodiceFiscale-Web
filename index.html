@@ -197,7 +197,8 @@
                 <option value="31">31</option>
             </select>
             <br>
-            <label for="elencoStati">Stato di nascita: </label> <select name="elencoStati" id="elencoStati">
+            <label for="elencoStati">Stato di nascita: </label> <select name="elencoStati" id="elencoStati" onchange="aggiornaElenchi()">
+				<option value="0">Seleziona</option>
 				<option value="Z000">Italia</option>    
 				<option value="Z100">Albania</option>
     <option value="Z101">Andorra</option>
@@ -474,7 +475,7 @@
             </select>
             <br>
 			<!--! la selezione del comune di nascita è inutilizzabile, da rifare con le provincie (?)-->
-            <label for="elencoComune">Comune di nascita: </label> <select name="elencoComune" id="elencoComune">
+            <label for="elencoComune">Comune di nascita: </label> <select name="elencoComune" id="elencoComune" disabled>
     <option value="0">Seleziona</option>       
 	<option value="A001">ABANO TERME</option>
 	<option value="A004">ABBADIA CERRETO</option>
