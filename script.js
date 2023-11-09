@@ -29,7 +29,7 @@ function calcola() {
     surname = surname.toUpperCase();
     surname = surname.replaceAll(' ', '');
 
-    // VVerifica della presenza dei dati
+    // Verifica della presenza dei dati
     if (surname == "") { 
         alert("Campo 'cognome' vuoto");
         return;
@@ -186,7 +186,7 @@ function calcola() {
             posPD++;
         }
     }
-    
+    // TODO: Finire l'algoritmo https://it.wikipedia.org/wiki/Codice_fiscale#Generazione_del_codice_fiscale
 
     // FINE
     alert(codice);
