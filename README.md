@@ -63,3 +63,4 @@ Il codice fiscale è diviso in 15 posizioni occupate da 6 sezioni:
 - [ ] Better UI/UX
 - [ ] Console log di debug
 - [ ] Function per il popolamento delle variabili per facilitare il debugging
+- [ ] Aggiungere documentazione per tema bootstrap di [Designers Italia](https://italia.github.io/bootstrap-italia/docs/come-iniziare/introduzione/)
