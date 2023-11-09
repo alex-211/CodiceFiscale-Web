@@ -11,16 +11,16 @@
     </head>
 
     <body>
-        <h1>Calcola qui il tuo codice fiscale!</h1>
+        <h1> <img src="IMAGES/emblemaRepubblica.svg" alt="Emblema della Repubblica Italiana" style="display: inline;" width="65px" height="72.22">  Calcola qui il tuo codice fiscale</h1>
         <form action="" name="datiAnagrafici" onsubmit="calcola()">
-            <label for="name">Name: </label> <input type="text" name="name" id="name">
+            <label for="name">Nome: </label> <input type="text" name="name" id="name" required>
             <br>
-            <label for="cognome">Cognome: </label> <input type="text" name="cognome" id="cognome">
+            <label for="cognome">Cognome: </label> <input type="text" name="cognome" id="cognome" required>
             <br>
-            <label for="sesso">Sesso maschile: </label>  <input type="radio" name="sesso" id="sessoMASCHIO">
-            <label for="sesso">Sesso femminile: </label> <input type="radio" name="sesso" id="sessoFEMMINA">
+            <label for="sesso">Sesso: maschio </label>  <input type="radio" name="sesso" id="sessoMASCHIO">
+            <label for="sesso">femmina </label> <input type="radio" name="sesso" id="sessoFEMMINA">
             <br>
-            <label for="elencoAnno">Anno di nascita: </label> <select name="elencoAnno" id="elencoAnno">
+            <label for="elencoAnno">Anno di nascita: </label> <select name="elencoAnno" id="elencoAnno" required>
 				<option value="0">Seleziona</option>
                 <option value="1900">1900</option>
                 <option value="1901">1901</option>
@@ -147,7 +147,7 @@
                 <option value="2022">2022</option>
                 <option value="2023">2023</option>
             </select>
-            <label for="elencoMesi">Mese di nascita: </label> <select name="elencoMesi" id="elencoMesi">
+            <label for="elencoMesi">Mese di nascita: </label> <select name="elencoMesi" id="elencoMesi" required>
 				<option value="0">Seleziona</option>
                 <option value="A">Gennaio</option>
                 <option value="B">Febbraio</option>
@@ -162,7 +162,7 @@
                 <option value="S">Novembre</option>
                 <option value="T">Dicembre</option>
             </select>
-            <label for="elencoGiorni">Giorno di nascita: </label> <select name="elencoGiorni" id="elencoGiorni">
+            <label for="elencoGiorni">Giorno di nascita: </label> <select name="elencoGiorni" id="elencoGiorni" required>
                 <option value="0">Seleziona</option>
 				<option value="1">1</option>
                 <option value="2">2</option>
@@ -197,7 +197,7 @@
                 <option value="31">31</option>
             </select>
             <br>
-            <label for="elencoStati">Stato di nascita: </label> <select name="elencoStati" id="elencoStati" onchange="aggiornaElenchi()">
+            <label for="elencoStati">Stato di nascita: </label> <select name="elencoStati" id="elencoStati" onchange="aggiornaElenchi()" required>
 				<option value="0">Seleziona</option>
 				<option value="Z000">Italia</option>    
 				<option value="Z100">Albania</option>
@@ -474,9 +474,8 @@
 
             </select>
             <br>
-			<!--! la selezione del comune di nascita è inutilizzabile, da rifare con le provincie (?)-->
-            <label for="elencoComune">Comune di nascita: </label> <select name="elencoComune" id="elencoComune" disabled>
-    <option value="0">Seleziona</option>       
+            <select name="elencoComune" id="elencoComune" hidden>
+    <option value="0">Seleziona il comune di nascita...</option>       
 	<option value="A001">ABANO TERME</option>
 	<option value="A004">ABBADIA CERRETO</option>
 	<option value="A005">ABBADIA LARIANA</option>
@@ -8380,7 +8379,11 @@
 	<option value="M204">ZUNGRI</option>
             </select>
             <br>
-            <input type="submit" name="invio" id="invio" value="Controlla!">
+            <input type="submit" name="invio" id="invio" value="Calcola!">
         </form>
+		<footer>
+			<p>Realizzato da Alessandro Porpiglia, studente @ ITIS Ettore Majorana, Grugliasco (TO)</p>
+			<p>Codice sorgente disponibile sulla <a href="https://github.com/alex-211/CodiceFiscale-Web" style="color: white;">Repository GitHub</a></p>
+		</footer>
     </body>
 </html>

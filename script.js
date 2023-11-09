@@ -30,6 +30,7 @@ function calcola() {
     surname = surname.replaceAll(' ', '');
 
     // Verifica della presenza dei dati
+    // Molti di questi allert sono resi inutili dalla proprietà 'required' nei form HTML
     if (surname == "") { 
         alert("Campo 'cognome' vuoto");
         return;
@@ -58,9 +59,14 @@ function calcola() {
         alert("Selezionare un giorno di nascita");
         return;
     }
-    if (comuneNascita == "0")
+    if (comuneNascita == "0" && statoNascita == "0")
     {
         alert("Selezionare un comune di nascita");
+        return;
+    }
+    if (statoNascita == "0")
+    {
+        alert("Selezionare uno stato di nascita");
         return;
     }
 
@@ -168,28 +174,36 @@ function calcola() {
     y += 4;
 
     // pos. 15 carattere di controllo
-    let posizionePari = [];
-    let posPP = 0;
-    let posizioniDispari = [];
-    let posPD = 0;
-
-    for (let i = 0; i < y; i++)
-    {
-        if (i % 2 == 0)
-        {
-            posizionePari[posPP] = codice[i];
-            posPP++;
-        }
-        else
-        {
-            posizioniDispari[posPD] = codice[i];
-            posPD++;
-        }
-    }
-    // TODO: Finire l'algoritmo https://it.wikipedia.org/wiki/Codice_fiscale#Generazione_del_codice_fiscale
-
+    let caratteri = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]; 
+    let valoredis  = [1,0,5,7,9,13,15,17,19,21,1,0,5,7,9,13,15,17,19,21,2,4,18,20,11,3,6,8,12,14,16,10,22,25,24,23]; 
+    let valorepari  = [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+    let j, somma = 0;  
+    
+    for(i = 0; i < y; i++) 
+    { 
+        for(j = 0; j < caratteri.length; j++)
+        { 
+            if(codice[i] == caratteri[j]) 
+            { 
+                if(i % 2 == 0) 
+                { 
+                    console.log(valoredis[j]) 
+                    somma += valoredis[j]; 
+                } 
+                else 
+                { 
+                    console.log(valorepari[j]) 
+                    somma += valorepari[j]; 
+                } 
+                break; 
+            } 
+        } 
+    } 
+    codice[15] = caratteri[parseInt(somma%26)+10];
+    y++;
     // FINE
     alert(codice);
+    return;
 }
 
 function aggiornaElenchi()
@@ -197,6 +211,7 @@ function aggiornaElenchi()
     if (document.datiAnagrafici.elencoStati.value == "Z000")
     {
         let elencoComune = document.datiAnagrafici.elencoComune;
-        elencoComune.removeAttribute("disabled")
+        elencoComune.removeAttribute("hidden");
+        elencoComune.setAttribute("required");
     }
 }

@@ -1,1 +1,15 @@
-body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+body {font-family: 'Titillium Web', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between; }
+form {margin: auto; width: 40%;}
+h1 {background-color: #0066cc; color: white; text-align: center; padding: 10px;}
+footer {background-color: #0059b3; padding: 10px; color: white;}
+
+/* Tanta roba qua ci ho provato ma mi arrendo (governo.it)
+.bandieraContainer {display: flex;}
+.bandieraVerde {width: 33.33%; background-color: #009246; display: inline-block;}
+.bandieraBianco {width: 33.33%; background-color: white; display: inline-block;}
+.bandieraRosso {width: 33.33%; background-color: #ce2b37; display: inline-block;} */
