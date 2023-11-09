@@ -9,6 +9,7 @@ Il codice fiscale è diviso in 15 posizioni occupate da 6 sezioni:
 1. Pos. 1 -> 3, cognome: si prendono le prime 3 consonanti del cognome. Se il cognome ha meno di 3 consonanti, si prendono le vocali, che però si mettono dopo le consonanti. Se il cognome ha meno di 3 lettere, si aggiungono le lettere X fino ad arrivare a 3.
 2. Pos. 4 -> 6, nome: Nel caso il nome contenesse 4 o + consonanti si prendono la prima, la terza e la quarta - nel caso ci fossero 3 consonanti si prendono le prime 3 - nel caso ci fossero meno di 3 consonanti si prendono prima le consonanti e poi si aggiungono le vocali fino ad arrivare a 3. Nel caso ci fossero meno di 3 lettere, si aggiungono X fino ad arrivare a 3.
 3. Pos. 7 -> 9, anno e mese di nascita: le ultime due cifre dell'anno di nascita e una lettera corrispondente al mese, secondo questa tabella:
+
    | Lettera | Mese |
    ------------------
     | A | Gennaio |
