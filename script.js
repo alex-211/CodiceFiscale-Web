@@ -1,22 +1,17 @@
 function calcola() {
-    // refer to wiki docs https://it.wikipedia.org/wiki/Codice_fiscale#Generazione_del_codice_fiscale
+    // ho deciso di usare un array per il codice fiscale
     let codice = [];
-
+    let y = 0;
+    // Popolazione variabili
     let surname = document.datiAnagrafici.cognome.value;
     let name = document.datiAnagrafici.name.value;
+    let meseNascita = document.datiAnagrafici.elencoMesi.value;
+    let annoNascita = document.datiAnagrafici.elencoAnno.value;
+    let giornoNascita = document.datiAnagrafici.elencoGiorni.value;
+    let statoNascita = document.datiAnagrafici.elencoStati.value;
+    let comuneNascita = document.datiAnagrafici.elencoComune.value;
 
-    let elementoSelezionatoMese = document.getElementById("elencoMesi");
-    let meseNascita = elementoSelezionatoMese.options[elementoSelezionatoMese.selectedIndex].value;
-    let elementoSelezionatoAnno = document.getElementById("elencoAnno");
-    let annoNascita = elementoSelezionatoAnno.options[elementoSelezionatoAnno.selectedIndex].value;
-    let elementoSelezionatoGiorno = document.getElementById("elencoGiorni");
-    let giornoNascita = elementoSelezionatoGiorno.options[elementoSelezionatoGiorno.selectedIndex].value;
-
-    let elementoSelezionatoStato = document.getElementById("elencoStati");
-    let statoNascita = elementoSelezionatoStato.options[elementoSelezionatoStato.selectedIndex].value;
-    let elementoSelezionatoComune = document.getElementById("elencoComuni");
-    let comuneNascita = elementoSelezionatoComune.options[elementoSelezionatoComune.selectedIndex].value;
-
+    // Popolazione delle variabili del sesso
     let sessoMaschio = false;
     let sessoFemmina = false;
     if (document.getElementById("sessoMASCHIO").checked)
@@ -34,13 +29,12 @@ function calcola() {
     surname = surname.toUpperCase();
     surname = surname.replaceAll(' ', '');
 
-    // qua le verifiche della correttezza dei dati inviati
-
-    if (surname == "") { // works
+    // VVerifica della presenza dei dati
+    if (surname == "") { 
         alert("Campo 'cognome' vuoto");
         return;
     } 
-    if (name == "") { // might have fixed it, check if it works
+    if (name == "") {
         alert("Campo 'name' vuoto");
         return;
     } 
@@ -49,16 +43,32 @@ function calcola() {
         alert("Selezionare un sesso");
         return;
     }
-    // il resto dei campi hanno un'opzioni di default essendo elenchi COMMENTED OUT FOR TESTING*/
+    if (meseNascita == "0")
+    {
+        alert("Selezionare un mese di nascita");
+        return;
+    }
+    if (annoNascita == "0")
+    {
+        alert("Selezionare un anno di nascita");
+        return;
+    }
+    if (giornoNascita == "0")
+    {
+        alert("Selezionare un giorno di nascita");
+        return;
+    }
+    if (comuneNascita == "0")
+    {
+        alert("Selezionare un comune di nascita");
+        return;
+    }
 
     // pos. 0-2 cognome
     let cognomeSize = surname.length;
-    let y = 0;
 
     for (let i = 0; i < cognomeSize && y < 3; i++)
     {
-        //console.log(surname[i] + " " + " " + codice + " " + y); // Perché non c'è un debugger per JS su VS Code???
-
         if (y == 2 && i == cognomeSize - 1)
         {
             codice[2] = "X";
@@ -76,8 +86,6 @@ function calcola() {
     let z = 0;
     for (let i = 0; i < name.length; i++)
     {
-        //console.log(consonantiName[z] + " " + name[i]);
-
         if (name[i] != "A" && name[i] != "E" && name[i] != "I" && name[i] != "O" && name[i] != "U")
         {
             consonantiName[z] = name[i];
@@ -159,9 +167,27 @@ function calcola() {
     }
     y += 4;
 
-    // pos. 15-16 carattere di controllo
+    // pos. 15 carattere di controllo
+    let posizionePari = [];
+    let posPP = 0;
+    let posizioniDispari = [];
+    let posPD = 0;
+
+    for (let i = 0; i < y; i++)
+    {
+        if (i % 2 == 0)
+        {
+            posizionePari[posPP] = codice[i];
+            posPP++;
+        }
+        else
+        {
+            posizioniDispari[posPD] = codice[i];
+            posPD++;
+        }
+    }
+    
+
+    // FINE
     alert(codice);
-
-
-
 }
