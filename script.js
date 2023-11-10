@@ -202,7 +202,7 @@ function calcola() {
     codice[15] = caratteri[parseInt(somma%26)+10];
     y++;
     // FINE
-    alert(codice);
+    alert(codice.join(""));
     return;
 }
 
