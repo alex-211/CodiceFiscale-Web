@@ -208,10 +208,16 @@ function calcola() {
 
 function aggiornaElenchi()
 {
+    let elencoComune = document.datiAnagrafici.elencoComune;
+
     if (document.datiAnagrafici.elencoStati.value == "Z000")
     {
-        let elencoComune = document.datiAnagrafici.elencoComune;
         elencoComune.removeAttribute("hidden");
         elencoComune.setAttribute("required");
+    }
+    else 
+    {
+        elencoComune.setAttribute("hidden");
+        elencoComune.removeAttribute("required");
     }
 }
